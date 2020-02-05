@@ -17,5 +17,7 @@ router.route('/locations/:location_id')
     .patch(locationController.update)
     .put(locationController.update)
     .delete(locationController.delete);
+router.route('/locations/:location_id/bookings')
+    .get(locationController.getCurrentBookings)
 
 module.exports = router;

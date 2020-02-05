@@ -1,3 +1,6 @@
+const request = require('request');
+const bookingService = 'http://localhost:3004'
+
 Location = require('./locationModel');
 
 exports.index = function (req, res) {
@@ -80,3 +83,20 @@ exports.delete = function (req, res) {
         });
     });
 };
+
+exports.getCurrentBookings = function (req, res) {
+    const allBookingsRequest = request.get({
+        headers: { 'content-type': 'application/json' },
+        url: `${bookingService}/api/bookings`,
+        json: true
+    }, (err, response, body) => {
+        if (err) {
+            res.status(400).send({
+                error: err
+            })
+        } else {
+            const myBookings = body.data.filter(booking => booking.location_id === req.params.location_id);
+            res.status(200).send(myBookings);
+        }
+    });
+}
