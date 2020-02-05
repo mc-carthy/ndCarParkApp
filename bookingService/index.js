@@ -19,7 +19,7 @@ if (!db) {
     console.log('Connected to DB successfully');
 }
 
-let port = process.env.PORT || 3005;
+let port = process.env.PORT || 3004;
 
 app.get('/', (req, res) => res.send('Booking Service route'));
 app.use('/api', apiRoutes)
