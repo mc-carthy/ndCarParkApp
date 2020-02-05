@@ -7,7 +7,7 @@ let apiRoutes = require("./api-routes")
 let app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-mongoose.connect('mongodb://localhost/resthub', { 
+mongoose.connect('mongodb://localhost/userService', { 
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
