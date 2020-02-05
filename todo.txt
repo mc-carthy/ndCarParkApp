@@ -1,0 +1,33 @@
+Services:
+    User service:
+        Allows CRUD operations on users, admin only
+    Location service:
+        Allows CRUD operations on locations, admin only
+    Car service:
+        Allows Allows CRUD operations on users' cars, auth'd user only
+    Booking service:
+        Allows user to create booking for car-location
+    Payment service:
+        Allows funding/debiting from user balance
+    Validation service:
+        Allows check of valid booking at location, addition of charges to user account if not valid booking
+Models:
+    User:
+        cars: [Car]
+        funds: int
+    Location:
+        freeSpots: int
+        currentBookings: [Booking]
+        hourlyFee: int
+    Car:
+        manufacturer: string
+        model: string
+        color: string
+        registrationNumber: string
+    Booking:
+        car: Car
+        user: User
+        location: Location
+        startTime: Date
+        endTime: Date?
+        fee: int
