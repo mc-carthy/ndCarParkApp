@@ -1,3 +1,8 @@
+const request = require('request-promise');
+const userService = 'http://localhost:3001';
+const carService = 'http://localhost:3002';
+const locationService = 'http://localhost:3003';
+
 Booking = require('./bookingModel');
 
 exports.index = function (req, res) {
@@ -79,3 +84,36 @@ exports.delete = function (req, res) {
         });
     });
 };
+
+exports.bookingDetails = function(req, res) {
+    const summaryRequest = Booking.findById(req.params.booking_id);
+    summaryRequest.then((summary) => {
+        const userRequest = request({ uri: `${userService}/api/users/${summary.user_id}`, rejectUnauthorized: false, json: true });
+        const carRequest = request({ uri: `${carService}/api/cars/${summary.car_id}`, rejectUnauthorized: false, json: true });
+        const locationRequest = request({ uri: `${locationService}/api/locations/${summary.location_id}`, rejectUnauthorized: false, json: true });
+        const promises = [userRequest, carRequest, locationRequest];
+        Promise.all(promises).then((responses) => {
+            const userResponse = responses[0].data;
+            const carResponse = responses[1].data;
+            const locationResponse = responses[2].data;
+            res.json({
+                user: {
+                    name: userResponse.name,
+                    email: userResponse.email,
+                    email: userResponse.phone,
+                },
+                car: {
+                    manufacturer: carResponse.manufacturer,
+                    model: carResponse.model,
+                    registration: carResponse.registration,
+                },
+                location: {
+                    name: locationResponse.name
+                },
+                startDate: summary.startDate,
+                endDate: summary.endDate,
+                fees: summary.fee
+            })
+        }).catch((err) => res.send(err));
+    });
+}

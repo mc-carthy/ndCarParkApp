@@ -17,5 +17,6 @@ router.route('/bookings/:booking_id')
     .patch(bookingController.update)
     .put(bookingController.update)
     .delete(bookingController.delete);
-
+router.route('/bookings/:booking_id/details')
+    .get(bookingController.bookingDetails);
 module.exports = router;
