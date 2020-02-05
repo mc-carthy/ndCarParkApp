@@ -16,7 +16,7 @@ let db = mongoose.connection;
 if (!db) {
     console.log('Error connecting to DB');
 } else {
-    console.log('Connectored to DB successfully');
+    console.log('Connected to DB successfully');
 }
 
 let port = process.env.PORT || 3001;

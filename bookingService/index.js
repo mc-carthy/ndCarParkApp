@@ -16,10 +16,10 @@ let db = mongoose.connection;
 if (!db) {
     console.log('Error connecting to DB');
 } else {
-    console.log('Connectored to DB successfully');
+    console.log('Connected to DB successfully');
 }
 
-let port = process.env.PORT || 3002;
+let port = process.env.PORT || 3005;
 
 app.get('/', (req, res) => res.send('Booking Service route'));
 app.use('/api', apiRoutes)
