@@ -20,6 +20,8 @@ exports.new = function (req, res) {
     var booking = new Booking();
     booking.user_id = req.body.user_id;
     booking.car_id = req.body.car_id;
+    booking.location_id = req.body.location_id;
+    booking.startDate = req.body.startDate || Date.now();
     booking.save(function (err) {
         if (err) {
             res.json(err);
