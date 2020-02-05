@@ -16,6 +16,10 @@ let contactSchema = mongoose.Schema({
     hourlyFee: {
         type: Number,
         required: true
+    },
+    currentBookings: {
+        type: [String],
+        default: []
     }
 });
 
