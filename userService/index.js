@@ -7,7 +7,8 @@ let apiRoutes = require("./api-routes")
 let app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-mongoose.connect('mongodb://localhost/userService', { 
+const DB_URI = process.env.MONGO_DB_URI ? process.env.MONGO_DB_URI : "mongodb://localhost:27017/userService";
+mongoose.connect(DB_URI, { 
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
