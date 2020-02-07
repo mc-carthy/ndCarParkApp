@@ -1,7 +1,11 @@
 const request = require('request-promise');
-const userService = 'http://localhost:3001';
-const carService = 'http://localhost:3002';
-const locationService = 'http://localhost:3003';
+// const userService = 'http://localhost:3001';
+// const carService = 'http://localhost:3002';
+// const locationService = 'http://localhost:3003';
+
+const userService = 'http://users:3001';
+const carService = 'http://cars:3002';
+const locationService = 'http://locations:3003';
 
 Booking = require('./bookingModel');
 

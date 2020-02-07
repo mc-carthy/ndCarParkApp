@@ -1,5 +1,6 @@
 const request = require('request');
-const bookingService = 'http://localhost:3004'
+// const bookingService = 'http://localhost:3004'
+const bookingService = 'http://bookings:3004'
 
 Location = require('./locationModel');
 

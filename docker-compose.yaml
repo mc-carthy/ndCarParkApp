@@ -1,0 +1,43 @@
+version: '3'
+services:
+
+  users:
+    build: './userService'
+    ports:
+      - "3001:3001"
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/userService
+
+  cars:
+    build: './carService'
+    ports:
+      - "3002:3002"
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/carService
+
+  locations:
+    build: './locationService'
+    ports:
+      - "3003:3003"
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/locationService
+
+  bookings:
+    build: './bookingService'
+    ports:
+      - "3004:3004"
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/bookingService
+  
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
